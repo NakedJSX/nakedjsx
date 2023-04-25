@@ -1,9 +1,18 @@
 {
   "name": "nakedjsx",
-  "version": "0.0.0",
+  "version": "0.2.1",
   "description": "CLI command for building NakedJSX files or projects.",
   "type": "module",
   "bin": "index.mjs",
+  "dependencies": {
+    "@nakedjsx/core": "^0.2.1",
+    "@nakedjsx/plugin-asset-image": "^0.2.1"
+  },
+  "author": "David Hogan",
+  "license": "BSD-3-Clause",
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "nakedjsx",
     "cli",
@@ -17,8 +26,6 @@
     "type": "git",
     "url": "git+https://github.com/NakedJSX/nakedjsx.git"
   },
-  "author": "David Hogan",
-  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/NakedJSX/nakedjsx/issues"
   },
