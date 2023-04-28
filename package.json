@@ -1,13 +1,13 @@
 {
   "name": "nakedjsx",
-  "version": "0.3.0-test.3",
+  "version": "0.3.0-test.5",
   "description": "CLI command for building NakedJSX files or projects.",
   "type": "module",
   "bin": "index.mjs",
   "author": "David Hogan",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@nakedjsx/core": "^0.3.0-test.3",
+    "@nakedjsx/core": "^0.3.0-test.4",
     "@nakedjsx/plugin-asset-image": "^0.3.0-test.0"
   },
   "publishConfig": {

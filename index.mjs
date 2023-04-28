@@ -121,7 +121,7 @@ function isDependencyOrDevDependency(packageFilePath, packageName)
     return false;
 }
 
-function useTargetNakedJSX(rootDir, packageFilePath)
+async function useTargetNakedJSX(rootDir, packageFilePath)
 {
     log(`Using NakedJSX from ${packageFilePath}`);
 
@@ -154,12 +154,14 @@ function useTargetNakedJSX(rootDir, packageFilePath)
     }
     else
     {
-        fatal('Target package mananger not detected (looked for yarn, pnpm, and npm)');
+        warn('Target package mananger not detected, falling back to bundled NakedJSX (looked for yarn, pnpm, and npm)');
+
+        return useBundledNakedJSX(rootDir);
     }
 
     log(`Launching child process within ${rootDir}: ${command} ${commandArguments.join(' ')}`);
 
-    child_process.spawn(
+    child_process.spawnSync(
         command,
         commandArguments,
         {
@@ -184,7 +186,7 @@ async function main()
     const packageFilePath = findPackageJson(rootDir);
 
     if (packageFilePath && isDependencyOrDevDependency(packageFilePath, '@nakedjsx/core'))
-        useTargetNakedJSX(rootDir, packageFilePath);
+        await useTargetNakedJSX(rootDir, packageFilePath);
     else
         await useBundledNakedJSX(rootDir);
 }
