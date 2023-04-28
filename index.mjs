@@ -157,7 +157,7 @@ function useTargetNakedJSX(rootDir, packageFilePath)
         fatal('Target package mananger not detected (looked for yarn, pnpm, and npm)');
     }
 
-    log(`Launching child process: ${command} ${commandArguments.join(' ')}`);
+    log(`Launching child process within ${rootDir}: ${command} ${commandArguments.join(' ')}`);
 
     child_process.spawn(
         command,
