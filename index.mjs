@@ -1,20 +1,31 @@
 #!/usr/bin/env node
 
 //
-// This tool is just a simple config building and
-// invocation wrapper around @nakedjsx/core.
+// If the destination root folder is part of a package
+// that depends on @nakedjsx/core, then invoke that
+// version's CLI directly. If not, then use the version
+// of @nakedjsx/core installed as a dep of this npx tool.
 //
 
-import fs from 'node:fs'
-
-import { NakedJSX, emptyConfig, configFilename } from '@nakedjsx/core'
+import fs from 'node:fs';
 import path from 'node:path';
+import child_process from 'node:child_process';
 
-const log = console.log.bind(console);
+import { main as bundledNakedJsxMain } from '@nakedjsx/core/cli';
 
-function err(message)
+export function log(message)
 {
-    console.error(`\x1b[1mERROR: ${message}\x1b[22m`);
+	console.log(message);
+}
+
+export function warn(message)
+{
+	console.warn(`\x1b[1mWARNING: ${message}\x1b[22m`);
+}
+
+export function err(message)
+{
+	console.error(`\x1b[1mERROR: ${message}\x1b[22m`);
 }
 
 function fatal(message, showUsage)
@@ -25,141 +36,30 @@ function fatal(message, showUsage)
     process.exit(1);
 }
 
-let developmentMode = false;    // --dev
-let configWrite     = false;    // --config-write
-
-const options =
-    {
-        '--dev':
-            {
-                desc: 'Launch a hot-refresh development server',
-                impl()
-                {
-                    developmentMode = true;
-                }
-            },
-        
-        '--config-write':
-            {
-                desc: 'Write the effective config file to <pages-directory>/.nakedjsx.json',
-                impl()
-                {
-                    configWrite = true;
-                }
-            },
-        
-        '--output-dir':
-            {
-                desc: 'The build output will be placed here',
-                args: ['path'],
-                impl(config, { path })
-                {
-                    config.outputDir = path;
-                }
-            },
-
-        '--css-common':
-            {
-                desc: 'CSS to compile and compress along with extracted scoped css="..." JSX attributes',
-                args: ['pathToCssFile'],
-                impl(config, { pathToCssFile })
-                {
-                    config.commonCssFile = pathToCssFile;
-                }
-            },
-
-        '--plugin':
-            {
-                desc: 'Enable plugin such as @nakedjsx/plugin-asset-image.',
-                args: ['pluginPackageNameOrPath'],
-                async impl(config, { pluginPackageNameOrPath })
-                {
-                    if (!config.plugins.includes(pluginPackageNameOrPath))
-                        config.plugins.push(pluginPackageNameOrPath);
-                }
-            },
-
-        '--alias-source':
-            {
-                desc: 'Soucecode import path alias, eg. import something from \'$SRC/something.mjs\'',
-                args: ['alias', 'sourceImportDirectory'],
-                impl(config, { alias, sourceImportDirectory })
-                {
-                    config.importMapping[alias] = { type: 'source', path: sourceImportDirectory };
-                }
-            },
-
-        '--alias-asset':
-            {
-                desc: 'Asset import path alias, eg. import logo_uri_path from \'$ASSET/logo.png\'',
-                args: ['alias', 'assetImportDirectory'],
-                impl(config, { alias, assetImportDirectory })
-                {
-                    config.importMapping[alias] = { type: 'asset', path: assetImportDirectory };
-                }
-            },
-
-        '--define':
-            {
-                desc: 'Make string data available to code, eg. import VALUE from \'KEY\'',
-                args: ['key', 'value'],
-                impl(config, { key, value })
-                {                    
-                    config.importMapping[key] = { type: 'definition', value };
-                }
-            },
-
-        '--help':
-            {
-                desc: 'Print basic help information and exit',
-                impl()
-                {
-                    usage();
-                    process.exit();
-                }
-            },
-    };
-
-function camelToKebabCase(camel)
+function absolutePath(absoluteOrRelativePath)
 {
-    return camel.replace(/[A-Z]/g, char => '-' + char.toLowerCase());
+	if (path.isAbsolute(absoluteOrRelativePath))
+        return path.normalize(absoluteOrRelativePath);
+    else
+        return path.normalize(process.cwd() + path.sep + absoluteOrRelativePath);
 }
 
 function usage()
 {
-    let optionsHelp = '';
-
-    for (const flag in options)
-    {
-        const option = options[flag];
-
-        let argText = '';
-        if (option.args)
-            for (const argCamel of option.args)
-                argText += ` <${camelToKebabCase(argCamel)}>`;
-
-        optionsHelp += `\n`;
-        optionsHelp += `    # ${option.desc}\n`;
-        optionsHelp += `    ${flag}${argText}\n`;
-    }
-
     log(
-`
-Usage:
-
-    # ${options['--help'].desc}
-    npx nakedjsx --help
-
-    # Find and build NakedJSX pages in <pages-directory>
-    npx nakedjsx <pages-directory> [options]
-
-Options:
-
-    \x1b[1mNOTE: All paths are either absolute or relative to <pages-directory>.\x1b[22m
-${optionsHelp}`);
+        `
+    Usage:
+    
+        # Find and build NakedJSX pages in <pages-directory>
+        npx nakedjsx <pages-directory> [options]
+    
+    All options will be passed through to the @nakedjsx/core nakedjsx bin -
+    either the @nakedjsx/core installed around <pages-directory> or the one
+    bundled with this tool if @nakedjsx/core is not installed.
+`);
 }
 
-function determineRootDir()
+function determineRootDir(args)
 {
     if (args < 1)
         fatal('<pages-directory> is required.', true);
@@ -183,90 +83,110 @@ function determineRootDir()
     return rootDir;
 }
 
-function loadBaseConfig(rootDir)
+function findPackageJson(searchDir)
 {
-    //
-    // Attempt to load config from pages dir
-    //
+    searchDir = absolutePath(searchDir);
 
-    const config = Object.assign({}, emptyConfig);
-
-    const configFile = rootDir + path.sep + configFilename;
-
-    if (!fs.existsSync(configFile))
+    while (searchDir)
     {
-        log(`No config found at ${configFile}`);
-        return config;
+        const testFile = path.join(searchDir, 'package.json');
+        if (fs.existsSync(testFile))
+            return testFile;
+        
+        const nextSearchDir = path.normalize(path.join(searchDir, '..'));
+        if (nextSearchDir === searchDir)
+            return null;
+        
+        searchDir = nextSearchDir;
     }
+}
 
-    log(`Loading config from ${configFile}`);
-
+function isDependencyOrDevDependency(packageFilePath, packageName)
+{
     try
     {
-        Object.assign(config, JSON.parse(fs.readFileSync(configFile)));
+        const pkg = JSON.parse(fs.readFileSync(packageFilePath));
+
+        if (pkg.dependencies && pkg.dependencies[packageName])
+            return true;
+
+        if (pkg.devDependencies && pkg.devDependencies[packageName])
+            return true;
     }
     catch(error)
     {
-        fatal('Failed to parse config file ' + error);
+        warn(`Could not parse ${packageFilePath}`);
     }
 
-    return config;
+    return false;
 }
 
-async function processCliArguments()
+function useTargetNakedJSX(rootDir, packageFilePath)
 {
-    //
-    // Process command line options
-    //
+    log(`Using NakedJSX from ${packageFilePath}`);
 
-    while (args.length)
+    const packageFileDir = path.dirname(packageFilePath);
+    const nakedJsxArguments = process.argv.slice(2);
+
+    let command;
+    let commandArguments;
+
+    if (fs.existsSync(path.join(packageFileDir, 'yarn.lock')))
     {
-        const flag = args.shift();
-        const option = options[flag];
+        log('yarn.lock detected, assuming yarn');
 
-        if (!option)
-            fatal(`Unknown flag: ${flag}`);
-        
-        const optionArguments = {};
-        for (const argCamel of option.args || [])
-        {
-            if (args.length == 0)
-                fatal(`${flag} missing required <${camelToKebabCase(argCamel)}> argument`, true);
-            
-            optionArguments[argCamel] = args.shift();
-        }
-        
-        await option.impl(config, optionArguments);
+        command = 'yarn';
+        commandArguments = ['nakedjsx'].concat(nakedJsxArguments);
     }
+    else if (fs.existsSync(path.join(packageFileDir, 'pnpm-lock.yaml')))
+    {
+        log('pnpm-lock.yaml detected, assuming pnpm');
+
+        command = 'pnpm';
+        commandArguments = ['exec', 'nakedjsx'].concat(nakedJsxArguments);
+    }
+    else if (fs.existsSync(path.join(packageFileDir, 'package-lock.json')))
+    {
+        log('package-lock.json detected, assuming npm');
+
+        command = 'npx';
+        commandArguments = ['nakedjsx'].concat(nakedJsxArguments);
+    }
+    else
+    {
+        fatal('Target package mananger not detected (looked for yarn, pnpm, and npm)');
+    }
+
+    log(`Launching child process: ${command} ${commandArguments.join(' ')}`);
+
+    child_process.spawn(
+        command,
+        commandArguments,
+        {
+            stdio: 'inherit',
+            cwd: rootDir
+        });
 }
 
-// [0] == node, [1] == this script
-const args = process.argv.slice(2);
-
-const rootDir   = determineRootDir();
-const config    = loadBaseConfig(rootDir);
-
-const configBefore = JSON.stringify(config);
-await processCliArguments(config);
-let configDirty = JSON.stringify(config) !== configBefore;
-
-if (configWrite)
+async function useBundledNakedJSX(rootDir)
 {
-    const configPath = rootDir + path.sep + configFilename;
-    log(`Writing config to ${configPath}`);
+    log(`NakedJSX not detected at ${rootDir}, using bundled version`);
 
-    fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
-    configDirty = false;
+    await bundledNakedJsxMain();
 }
 
-let nakedJsx;
+async function main()
+{
+    // [0] == node, [1] == this script
+    const args = process.argv.slice(2);
 
-if (configDirty)
-    nakedJsx = new NakedJSX(rootDir, { configOverride: config });
-else
-    nakedJsx = new NakedJSX(rootDir);
+    const rootDir = determineRootDir(args);
+    const packageFilePath = findPackageJson(rootDir);
 
-if (developmentMode)
-    await nakedJsx.developmentMode();
-else
-    await nakedJsx.build();
+    if (packageFilePath && isDependencyOrDevDependency(packageFilePath, '@nakedjsx/core'))
+        useTargetNakedJSX(rootDir, packageFilePath);
+    else
+        await useBundledNakedJSX(rootDir);
+}
+
+await main();
