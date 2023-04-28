@@ -1,6 +1,6 @@
 {
   "name": "nakedjsx",
-  "version": "0.3.0-test.5",
+  "version": "0.3.0-test.6",
   "description": "CLI command for building NakedJSX files or projects.",
   "type": "module",
   "bin": "index.mjs",
