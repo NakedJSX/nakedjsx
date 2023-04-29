@@ -165,8 +165,7 @@ async function useTargetNakedJSX(rootDir, packageFilePath)
         command,
         commandArguments,
         {
-            stdio: 'inherit',
-            cwd: rootDir
+            stdio: 'inherit'
         });
 }
 

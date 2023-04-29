@@ -1,6 +1,6 @@
 {
   "name": "nakedjsx",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Npx command for building NakedJSX websites.",
   "type": "module",
   "bin": "index.mjs",
