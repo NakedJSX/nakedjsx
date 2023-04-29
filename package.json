@@ -1,7 +1,7 @@
 {
   "name": "nakedjsx",
   "version": "0.3.2",
-  "description": "CLI command for building NakedJSX websites.",
+  "description": "Npx command for building NakedJSX websites.",
   "type": "module",
   "bin": "index.mjs",
   "author": "David Hogan",
