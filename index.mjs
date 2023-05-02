@@ -126,7 +126,9 @@ async function useTargetNakedJSX(rootDir, packageFilePath)
     log(`Using NakedJSX from ${packageFilePath}`);
 
     const packageFileDir = path.dirname(packageFilePath);
-    const nakedJsxArguments = process.argv.slice(2);
+
+    // Note, not using original source dir because we are changing cwd
+    const nakedJsxArguments = ['.', '--cli-path-base', process.cwd()].concat(process.argv.slice(3));
 
     let command;
     let commandArguments;
@@ -154,8 +156,7 @@ async function useTargetNakedJSX(rootDir, packageFilePath)
     }
     else
     {
-        warn('Target package mananger not detected, falling back to bundled NakedJSX (looked for yarn, pnpm, and npm)');
-
+        warn('Target package not installed or dep mananger not detected, falling back to bundled NakedJSX (looked for yarn, pnpm, and npm)');
         return useBundledNakedJSX(rootDir);
     }
 
@@ -165,7 +166,8 @@ async function useTargetNakedJSX(rootDir, packageFilePath)
         command,
         commandArguments,
         {
-            stdio: 'inherit'
+            stdio: 'inherit',
+            cwd: rootDir
         });
 }
 
