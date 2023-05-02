@@ -138,21 +138,21 @@ async function useTargetNakedJSX(rootDir, packageFilePath)
         log('yarn.lock detected, assuming yarn');
 
         command = 'yarn';
-        commandArguments = ['nakedjsx'].concat(nakedJsxArguments);
+        commandArguments = ['nakedjsx-cli'].concat(nakedJsxArguments);
     }
     else if (fs.existsSync(path.join(packageFileDir, 'pnpm-lock.yaml')))
     {
         log('pnpm-lock.yaml detected, assuming pnpm');
 
         command = 'pnpm';
-        commandArguments = ['exec', 'nakedjsx'].concat(nakedJsxArguments);
+        commandArguments = ['exec', 'nakedjsx-cli'].concat(nakedJsxArguments);
     }
     else if (fs.existsSync(path.join(packageFileDir, 'package-lock.json')))
     {
         log('package-lock.json detected, assuming npm');
 
         command = 'npx';
-        commandArguments = ['nakedjsx'].concat(nakedJsxArguments);
+        commandArguments = ['nakedjsx-cli'].concat(nakedJsxArguments);
     }
     else
     {
