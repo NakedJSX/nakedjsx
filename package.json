@@ -1,13 +1,13 @@
 {
   "name": "nakedjsx",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Npx command for building NakedJSX websites.",
   "type": "module",
   "author": "David Hogan",
   "license": "BSD-3-Clause",
   "bin": "index.mjs",
   "dependencies": {
-    "@nakedjsx/core": "~0.5.0",
+    "@nakedjsx/core": "~0.5.1",
     "@nakedjsx/plugin-asset-image": "~0.5.0"
   },
   "publishConfig": {
