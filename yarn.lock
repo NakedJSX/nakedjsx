@@ -1359,9 +1359,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nakedjsx/core@npm:0.6.3":
-  version: 0.6.3
-  resolution: "@nakedjsx/core@npm:0.6.3"
+"@nakedjsx/core@npm:0.6.4":
+  version: 0.6.4
+  resolution: "@nakedjsx/core@npm:0.6.4"
   dependencies:
     "@babel/core": ^7.20.12
     "@babel/generator": ^7.21.4
@@ -1379,7 +1379,7 @@ __metadata:
     terser: ^5.16.1
   bin:
     nakedjsx: build-system/cli-bin.mjs
-  checksum: 7cf4de661e5db3fe3bf1f8c1877423a038dd3a555ee43a4d47eff1b50437730ed9643e53d929454acc9f7f292a9a9773cc21b3f04e3c08b69b1bd648fb745aeb
+  checksum: 30c5e8c14a966e326c921a7c34fa600232e8c5983e891e12057885feaf78a4a24bd5383a35d3e713c75dce7c195b7fc5e1fb8ea7ecd59d22e604cdc449fe01a4
   languageName: node
   linkType: hard
 
@@ -2525,7 +2525,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "nakedjsx@workspace:."
   dependencies:
-    "@nakedjsx/core": 0.6.3
+    "@nakedjsx/core": 0.6.4
     "@nakedjsx/plugin-asset-image": 0.6.0
   bin:
     nakedjsx: index.mjs
