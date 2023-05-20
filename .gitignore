@@ -3,3 +3,4 @@
 .yarn/
 .yarnrc.yml
 node_modules
+yarn.lock
