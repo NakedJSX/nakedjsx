@@ -1359,9 +1359,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nakedjsx/core@npm:0.7.0-test.0":
-  version: 0.7.0-test.0
-  resolution: "@nakedjsx/core@npm:0.7.0-test.0"
+"@nakedjsx/core@npm:0.7.0-test.5":
+  version: 0.7.0-test.5
+  resolution: "@nakedjsx/core@npm:0.7.0-test.5"
   dependencies:
     "@babel/core": ^7.20.12
     "@babel/generator": ^7.21.4
@@ -1379,27 +1379,27 @@ __metadata:
     terser: ^5.16.1
   bin:
     nakedjsx: build-system/cli-bin.mjs
-  checksum: 7cb2d7d4877733b65c1637612e729a1ae2362521283272ed4e72ab619ac71be5e8f4bf3b3eba6362db6789413c86e2e9be82c20744914acf6c2f52a3ce995631
+  checksum: 5d8ee4352a888047dc47c8c2cef990ff7fb13c500e8967cda67adf5ac9562a8388c9ffde1a7d41664e9b04809385afea6568be45b904424050e2f362dafef961
   languageName: node
   linkType: hard
 
-"@nakedjsx/plugin-asset-image@npm:0.7.0-test.0":
-  version: 0.7.0-test.0
-  resolution: "@nakedjsx/plugin-asset-image@npm:0.7.0-test.0"
+"@nakedjsx/plugin-asset-image@npm:0.7.0-test.1":
+  version: 0.7.0-test.1
+  resolution: "@nakedjsx/plugin-asset-image@npm:0.7.0-test.1"
   peerDependencies:
-    "@nakedjsx/core": 0.7.0-test.0
-  checksum: e5682152941780ea9693c6bfecfd98fcbebdbf27639101fa3c566f8c3511f8ef3e1b0b0fdc40fc6ceb734ed0009c824c1fe13c018fcee98815d03569be54e8c3
+    "@nakedjsx/core": ~0.7.0-test.0
+  checksum: 2417563e435e0c700ffff3f2b8eab1c4f202cebe26d0a5372fbf6aa5a0776affba7ce8d7c4c834343e5fdd8480b078a1156c83e4948cff29eecf811b44a674a6
   languageName: node
   linkType: hard
 
-"@nakedjsx/plugin-asset-prism@npm:0.7.0-test.0":
-  version: 0.7.0-test.0
-  resolution: "@nakedjsx/plugin-asset-prism@npm:0.7.0-test.0"
+"@nakedjsx/plugin-asset-prism@npm:0.7.0-test.1":
+  version: 0.7.0-test.1
+  resolution: "@nakedjsx/plugin-asset-prism@npm:0.7.0-test.1"
   dependencies:
     prismjs: 1.29.0
   peerDependencies:
-    "@nakedjsx/core": 0.7.0-test.0
-  checksum: b97d8c51f2b2db0cca194b2b208db36cd631020a27f775cb25e08c8eecc3c8567960da22594016be9de7fd18948ab083b09a0d65c04e8a8420eb346585296c0b
+    "@nakedjsx/core": ~0.7.0-test.0
+  checksum: 0445db8753d25cd4c6974d84703ee5b8fa4c9e92ca0fcbbb9458aa9382a19ab47a437875c660dd50fceec14059fc1f922909b44489ecb8f318051fe6fb48317a
   languageName: node
   linkType: hard
 
@@ -2536,9 +2536,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "nakedjsx@workspace:."
   dependencies:
-    "@nakedjsx/core": 0.7.0-test.0
-    "@nakedjsx/plugin-asset-image": 0.7.0-test.0
-    "@nakedjsx/plugin-asset-prism": 0.7.0-test.0
+    "@nakedjsx/core": 0.7.0-test.5
+    "@nakedjsx/plugin-asset-image": 0.7.0-test.1
+    "@nakedjsx/plugin-asset-prism": 0.7.0-test.1
   bin:
     nakedjsx: index.mjs
   languageName: unknown
