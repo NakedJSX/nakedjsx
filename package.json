@@ -11,6 +11,9 @@
     "@nakedjsx/plugin-asset-image": "0.7.0",
     "@nakedjsx/plugin-asset-prism": "0.7.0"
   },
+  "files": [
+    "index.mjs"
+  ],
   "publishConfig": {
     "access": "public"
   },
