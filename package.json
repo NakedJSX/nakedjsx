@@ -12,7 +12,8 @@
     "@nakedjsx/plugin-asset-prism": "0.10.0"
   },
   "files": [
-    "index.mjs"
+    "index.mjs",
+    "npm-shrinkwrap.json"
   ],
   "publishConfig": {
     "access": "public"

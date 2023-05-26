@@ -4,3 +4,4 @@
 .yarnrc.yml
 node_modules
 yarn.lock
+npm-shrinkwrap.json
