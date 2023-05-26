@@ -8,3 +8,4 @@ mv "$TEMP_PKG" package.json
 npm cache clean --force
 [ -f package-lock ] && rm package-lock.json
 npm install
+npm shrinkwrap
