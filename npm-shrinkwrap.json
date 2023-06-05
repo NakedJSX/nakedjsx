@@ -1,15 +1,15 @@
 {
   "name": "nakedjsx",
-  "version": "0.12.2",
+  "version": "0.12.3",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "nakedjsx",
-      "version": "0.12.2",
+      "version": "0.12.3",
       "license": "BSD-3-Clause",
       "dependencies": {
-        "@nakedjsx/core": "0.12.2",
+        "@nakedjsx/core": "0.12.3",
         "@nakedjsx/plugin-asset-image": "0.12.0",
         "@nakedjsx/plugin-asset-prism": "0.12.0"
       },
@@ -1679,9 +1679,9 @@
       "integrity": "sha512-XPSJHWmi394fuUuzDnGz1wiKqWfo1yXecHQMRf2l6hztTO+nPru658AyDngaBe7isIxEkRsPR3FZh+s7iVa4Uw=="
     },
     "node_modules/@nakedjsx/core": {
-      "version": "0.12.2",
-      "resolved": "https://registry.npmjs.org/@nakedjsx/core/-/core-0.12.2.tgz",
-      "integrity": "sha512-7wt2mKI8XBSdR+z36LXI53iCUWSLnjPPGt671fLw9CJPovoLJVvOZ0ahDo63fvcaaOUTPNGeuTyPyh05oGV3Ow==",
+      "version": "0.12.3",
+      "resolved": "https://registry.npmjs.org/@nakedjsx/core/-/core-0.12.3.tgz",
+      "integrity": "sha512-WsOGs6v4VhvuTLJUkOuCqxomM64+VL3T1c8V1hCyKKo8xKMNl9l/g9/ByhnYVLJWLjGdZgQak5v9CmF07qCerg==",
       "dependencies": {
         "@babel/core": "^7.20.12",
         "@babel/generator": "^7.21.4",
