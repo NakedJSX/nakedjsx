@@ -8,3 +8,4 @@ yarn install
 yarn link ../core
 yarn link ../plugin-asset-image
 yarn link ../plugin-asset-prism
+yarn link ../plugin-asset-mdx
