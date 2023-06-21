@@ -13,7 +13,7 @@
 import { createRequire } from 'node:module'
 import fs from 'node:fs'
 import path from 'node:path'
-import { fileURLToPath, pathToFileURL, URL } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 
 //
 // If our package.json currently contains "resolutions",
