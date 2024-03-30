@@ -81,6 +81,7 @@ update_package_json
 npm cache verify
 npm install
 npm shrinkwrap
+git add npm-shrinkwrap.json
 commit_updated_package
 
 npm publish --tag $NPM_TAG
