@@ -1,4 +1,7 @@
 #!/bin/bash
+cd "$(dirname "$0")/.."
+set -o errexit
+set -o nounset
 
 rm -rf node_modules .yarn* yarn.lock
 [ -f npm-shrinkwrap.json ] && mv npm-shrinkwrap.json package-lock.json
