@@ -3,15 +3,18 @@ cd "$(dirname "$0")/.."
 set -o errexit
 set -o nounset
 
+# Something like 0.x.y or 0.x.y-test.z
 VERSION="$1"
+# latest, test, dev, etc
 NPM_TAG="$2"
+
 TEMP_PKG="$(mktemp)"
 
 OTHER_PACKAGES=(../plugin-asset-image ../plugin-asset-prism ../plugin-asset-mdx ../core)
 
 check_package() {
 	echo "Checking @nakedjsx/$(basename $(pwd)) ..."
-	if [[ ! -z $(git status -s . -- ':!rel.sh') ]] || [ "$(git branch --show-current)" != "main" ]
+	if [[ ! -z $(git status -s . -- ':!bin/rel.sh') ]] || [ "$(git branch --show-current)" != "main" ]
 	then
 		git status -s
 		echo "Not clean or not on main, aborting"
@@ -19,10 +22,15 @@ check_package() {
 	fi
 }
 
-update_package_json() {
+package_json_remove_dev() {
 	TEMP_PKG=$(mktemp)
-	jq "del(.packageManager, .resolutions) |
-			.version=\"$VERSION\" |
+	jq "del(.packageManager, .resolutions)" < package.json > "$TEMP_PKG"
+	mv "$TEMP_PKG" package.json
+}
+
+package_json_update_version() {
+	TEMP_PKG=$(mktemp)
+	jq ".version=\"$VERSION\" |
 			if .dependencies? then
 				.dependencies |= with_entries(select(.key | startswith(\"@nakedjsx/\")).value = \"$VERSION\")
 			else
@@ -48,11 +56,13 @@ git checkout npm-shrinkwrap.json
 for package in ${OTHER_PACKAGES[*]}
 do
 	pushd "$package" >/dev/null
+	package_json_remove_dev
 	check_package
 	popd >/dev/null
 done
 
 # Check that the nakedjsx dep package is clean
+package_json_remove_dev
 check_package
 
 #
@@ -63,7 +73,7 @@ check_package
 for package in ${OTHER_PACKAGES[*]}
 do
 	pushd "$package" >/dev/null
-	update_package_json
+	package_json_update_version
 	commit_updated_package
 	popd >/dev/null
 done
@@ -77,7 +87,7 @@ do
 	popd >/dev/null
 done
 
-update_package_json
+package_json_update_version
 npm cache verify
 npm install
 npm shrinkwrap
