@@ -1,17 +1,17 @@
 {
   "name": "nakedjsx",
-  "version": "0.14.3",
+  "version": "0.14.4-test.0",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "nakedjsx",
-      "version": "0.14.3",
+      "version": "0.14.4-test.0",
       "license": "BSD-3-Clause",
       "dependencies": {
-        "@nakedjsx/core": "0.14.3",
-        "@nakedjsx/plugin-asset-image": "0.14.3",
-        "@nakedjsx/plugin-asset-prism": "0.14.3"
+        "@nakedjsx/core": "0.14.4-test.0",
+        "@nakedjsx/plugin-asset-image": "0.14.4-test.0",
+        "@nakedjsx/plugin-asset-prism": "0.14.4-test.0"
       },
       "bin": {
         "nakedjsx": "index.mjs"
@@ -1725,9 +1725,9 @@
       }
     },
     "node_modules/@nakedjsx/core": {
-      "version": "0.14.3",
-      "resolved": "https://registry.npmjs.org/@nakedjsx/core/-/core-0.14.3.tgz",
-      "integrity": "sha512-hnD22p9dQiyu84PNdtKc/adMbU+7Dkq63E3P7ijpXP4jAgJm87X8haFrl+tQmfchC8z+ivZHKrbE2mYTl4r/mA==",
+      "version": "0.14.4-test.0",
+      "resolved": "https://registry.npmjs.org/@nakedjsx/core/-/core-0.14.4-test.0.tgz",
+      "integrity": "sha512-IIcXqeLwL5e70/UZLzN8QeJyna1ApUtfvMxl9hsVsnTLCQNWDlu6k+G0aowsmjX/51aXZsHnQCSJ+2pKRiV+IA==",
       "dependencies": {
         "@babel/core": "^7.20.12",
         "@babel/generator": "^7.21.4",
@@ -1745,7 +1745,7 @@
         "csso": "^5.0.5",
         "postcss": "^8.4.21",
         "postcss-nested": "^6.0.0",
-        "prettier": "2.8.8",
+        "prettier": "3.2.5",
         "rollup": "^3.10.1",
         "terser": "^5.16.1"
       },
@@ -1754,14 +1754,14 @@
       }
     },
     "node_modules/@nakedjsx/plugin-asset-image": {
-      "version": "0.14.3",
-      "resolved": "https://registry.npmjs.org/@nakedjsx/plugin-asset-image/-/plugin-asset-image-0.14.3.tgz",
-      "integrity": "sha512-FcidLSR/hUQSiOTc8Gpb7V5PoO8ViBE3ryVdlgIT+sJ0VVaOrIBLxe2dvDZeTUcv9Tf+krXVDPwTkQfTjLpQFA=="
+      "version": "0.14.4-test.0",
+      "resolved": "https://registry.npmjs.org/@nakedjsx/plugin-asset-image/-/plugin-asset-image-0.14.4-test.0.tgz",
+      "integrity": "sha512-CWpS6KHIV5/9V069me7A2jlFRjp6Qn1gzBWuJjzx5R5zM3Vn/0ZCfZTc9Wu3AWNBicgF7P0TjdzmHOlW2lmVWw=="
     },
     "node_modules/@nakedjsx/plugin-asset-prism": {
-      "version": "0.14.3",
-      "resolved": "https://registry.npmjs.org/@nakedjsx/plugin-asset-prism/-/plugin-asset-prism-0.14.3.tgz",
-      "integrity": "sha512-1moPO16TjoZM5b+AM1TCd6+1A96pYMVNw/DiLKabY2FezZhq4BarS/7pijAVKL4QEnzXAletgTF2AM77vmRwkA==",
+      "version": "0.14.4-test.0",
+      "resolved": "https://registry.npmjs.org/@nakedjsx/plugin-asset-prism/-/plugin-asset-prism-0.14.4-test.0.tgz",
+      "integrity": "sha512-ab+/jDjO2lLU8dp0zIsDgwQN6adqdBjXCzosHubYCtnOAtcHvfwcdhNjNUb4+bZuqNItiRDRqAR8iiKb9ja87w==",
       "dependencies": {
         "prismjs": "1.29.0"
       }
@@ -2449,14 +2449,14 @@
       }
     },
     "node_modules/prettier": {
-      "version": "2.8.8",
-      "resolved": "https://registry.npmjs.org/prettier/-/prettier-2.8.8.tgz",
-      "integrity": "sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==",
+      "version": "3.2.5",
+      "resolved": "https://registry.npmjs.org/prettier/-/prettier-3.2.5.tgz",
+      "integrity": "sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==",
       "bin": {
-        "prettier": "bin-prettier.js"
+        "prettier": "bin/prettier.cjs"
       },
       "engines": {
-        "node": ">=10.13.0"
+        "node": ">=14"
       },
       "funding": {
         "url": "https://github.com/prettier/prettier?sponsor=1"
