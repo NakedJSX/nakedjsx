@@ -36,9 +36,9 @@ commit_updated_package() {
 	git add package.json
 	TAG="v$VERSION"
 	git commit -m "$TAG"
-	# git tag "$TAG"
-	# git push origin
-	# git push origin "$TAG"
+	git tag "$TAG"
+	git push origin
+	git push origin "$TAG"
 }
 
 rm -rf node_modules .yarn* .pnp.* yarn.lock package-lock.json
@@ -68,19 +68,19 @@ do
 	popd >/dev/null
 done
 
+# now publish
+
+for package in ${OTHER_PACKAGES[*]}
+do
+	pushd "$package" >/dev/null
+	npm publish --tag $NPM_TAG
+	popd >/dev/null
+done
+
 update_package_json
 npm cache verify
 npm install
 npm shrinkwrap
 commit_updated_package
 
-# # now publish
-
-# for package in ${OTHER_PACKAGES[*]}
-# do
-# 	pushd "$package" >/dev/null
-# 	npm publish --tag $NPM_TAG
-# 	popd >/dev/null
-# done
-
-# npm publish --tag $NPM_TAG
+npm publish --tag $NPM_TAG
