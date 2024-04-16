@@ -5,9 +5,7 @@
   "type": "module",
   "author": "David Hogan",
   "license": "BSD-3-Clause",
-  "bin": {
-    "nakedjsx": "index.mjs"
-  },
+  "bin": "index.mjs",
   "dependencies": {
     "@nakedjsx/core": "0.14.4",
     "@nakedjsx/plugin-asset-image": "0.14.4",
