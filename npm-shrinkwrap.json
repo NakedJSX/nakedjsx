@@ -1,17 +1,17 @@
 {
   "name": "nakedjsx",
-  "version": "0.15.0-test.0",
+  "version": "0.15.0-test.3",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "nakedjsx",
-      "version": "0.15.0-test.0",
+      "version": "0.15.0-test.3",
       "license": "BSD-3-Clause",
       "dependencies": {
-        "@nakedjsx/core": "0.15.0-test.0",
-        "@nakedjsx/plugin-asset-image": "0.15.0-test.0",
-        "@nakedjsx/plugin-asset-prism": "0.15.0-test.0"
+        "@nakedjsx/core": "0.15.0-test.3",
+        "@nakedjsx/plugin-asset-image": "0.15.0-test.3",
+        "@nakedjsx/plugin-asset-prism": "0.15.0-test.3"
       },
       "bin": {
         "nakedjsx": "index.mjs"
@@ -1725,9 +1725,9 @@
       }
     },
     "node_modules/@nakedjsx/core": {
-      "version": "0.15.0-test.0",
-      "resolved": "https://registry.npmjs.org/@nakedjsx/core/-/core-0.15.0-test.0.tgz",
-      "integrity": "sha512-r5YLO89qabGdznG68lOLrOadx1d0hHCHeA20JvbSNZ6N/6MB3pBgSQ2KWKN7v8nPwD+qU4Dp5jCkowmmQH3OWA==",
+      "version": "0.15.0-test.3",
+      "resolved": "https://registry.npmjs.org/@nakedjsx/core/-/core-0.15.0-test.3.tgz",
+      "integrity": "sha512-/wizRF8airWnUUQX6PB70RPGmcqsDsXtePyaBRbMBigeqpDH0pENeG9g2bumG8q7MPNKYauBnJG/8ylyLHgRGQ==",
       "dependencies": {
         "@babel/core": "^7.20.12",
         "@babel/generator": "^7.21.4",
@@ -1754,14 +1754,14 @@
       }
     },
     "node_modules/@nakedjsx/plugin-asset-image": {
-      "version": "0.15.0-test.0",
-      "resolved": "https://registry.npmjs.org/@nakedjsx/plugin-asset-image/-/plugin-asset-image-0.15.0-test.0.tgz",
-      "integrity": "sha512-P3sXZPsOYuqZYzl0TVyqLeb4MdX5276sfm9nYi+XDdBRNK3udyhIfy8nQXyE9bjHg3p/mSyDWAo0ZtjdnmairA=="
+      "version": "0.15.0-test.3",
+      "resolved": "https://registry.npmjs.org/@nakedjsx/plugin-asset-image/-/plugin-asset-image-0.15.0-test.3.tgz",
+      "integrity": "sha512-/bZqeHNMdoeksHDO5le3aZ3K6fVhSoADKQ8tAC+ocfTQaCBkZjG6qrNUZcbPqhISDkN1y3pCgjUL4kcIjLEFbQ=="
     },
     "node_modules/@nakedjsx/plugin-asset-prism": {
-      "version": "0.15.0-test.0",
-      "resolved": "https://registry.npmjs.org/@nakedjsx/plugin-asset-prism/-/plugin-asset-prism-0.15.0-test.0.tgz",
-      "integrity": "sha512-qIQqEEfW7RTteIzBf5l/tQi0DRtODELsEsMJRAnOpQe23WBVEry1Bdvi/PuEwUnDmHHjmFwT1sfQDV50OtJCVg==",
+      "version": "0.15.0-test.3",
+      "resolved": "https://registry.npmjs.org/@nakedjsx/plugin-asset-prism/-/plugin-asset-prism-0.15.0-test.3.tgz",
+      "integrity": "sha512-H1n5HOWfPjikFJlbYDriZR+dJxgiewCVBseFdkTmZ+2muZ3Lg3Nhl2DR6Lq2yOT8bcb1ETHdx3PsePmcARrbZA==",
       "dependencies": {
         "prismjs": "1.29.0"
       }
