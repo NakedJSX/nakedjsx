@@ -1,17 +1,17 @@
 {
   "name": "nakedjsx",
-  "version": "0.17.0-test.1",
+  "version": "0.17.0",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "nakedjsx",
-      "version": "0.17.0-test.1",
+      "version": "0.17.0",
       "license": "BSD-3-Clause",
       "dependencies": {
-        "@nakedjsx/core": "0.17.0-test.1",
-        "@nakedjsx/plugin-asset-image": "0.17.0-test.1",
-        "@nakedjsx/plugin-asset-prism": "0.17.0-test.1"
+        "@nakedjsx/core": "0.17.0",
+        "@nakedjsx/plugin-asset-image": "0.17.0",
+        "@nakedjsx/plugin-asset-prism": "0.17.0"
       },
       "bin": {
         "nakedjsx": "index.mjs"
@@ -1726,9 +1726,9 @@
       }
     },
     "node_modules/@nakedjsx/core": {
-      "version": "0.17.0-test.1",
-      "resolved": "https://registry.npmjs.org/@nakedjsx/core/-/core-0.17.0-test.1.tgz",
-      "integrity": "sha512-Bk3lGliDGD9fnA2wTmJ3ZZezZU+WXlD2cHOpVsczjdmRbI9y8QnBhFMOAPF6OpnyRE6sU1BmUiLTyKijFJvuNA==",
+      "version": "0.17.0",
+      "resolved": "https://registry.npmjs.org/@nakedjsx/core/-/core-0.17.0.tgz",
+      "integrity": "sha512-ihge849twR04hiFkQK8LeBALiRLDsiEBq6yGnQnPS13PZnZxisMfNBnLdKEPajzk4ULwoQw6hp5JRmYlMijIBQ==",
       "license": "BSD-3-Clause",
       "dependencies": {
         "@babel/core": "^7.20.12",
@@ -1757,15 +1757,15 @@
       }
     },
     "node_modules/@nakedjsx/plugin-asset-image": {
-      "version": "0.17.0-test.1",
-      "resolved": "https://registry.npmjs.org/@nakedjsx/plugin-asset-image/-/plugin-asset-image-0.17.0-test.1.tgz",
-      "integrity": "sha512-pLLnrzEhUiZFBGg/EVscT9Ro4CI2yaO0m4Bn77AZrtviXRbDuRO5F2emlBdxLFgg4EWvIR0fMJBopNj06Qrwug==",
+      "version": "0.17.0",
+      "resolved": "https://registry.npmjs.org/@nakedjsx/plugin-asset-image/-/plugin-asset-image-0.17.0.tgz",
+      "integrity": "sha512-65dTxskgsXAgxqMTW3ZBZVP0oL/PKIasq8dEABs9Ngvzrh70IiMqy20Gr8aO8SdM0PKujhFr7FCOP1Tz8ws9mg==",
       "license": "BSD-3-Clause"
     },
     "node_modules/@nakedjsx/plugin-asset-prism": {
-      "version": "0.17.0-test.1",
-      "resolved": "https://registry.npmjs.org/@nakedjsx/plugin-asset-prism/-/plugin-asset-prism-0.17.0-test.1.tgz",
-      "integrity": "sha512-aPSaHdP+kXEixQhOClWdKcDO6uj1VLybN7iWL0QEKT5mjeW0JtPo98tQhTyi8evQiK9dvjUzqF3hk9aLVMUE7Q==",
+      "version": "0.17.0",
+      "resolved": "https://registry.npmjs.org/@nakedjsx/plugin-asset-prism/-/plugin-asset-prism-0.17.0.tgz",
+      "integrity": "sha512-ALszvUFpmWchllgK8S50Xoe2OzNISR013nx7SKChRM+6Ua4IodrVSMbYN4JfHILUc1HhMITA1yXLIGPeJ980WQ==",
       "license": "BSD-3-Clause",
       "dependencies": {
         "prismjs": "1.29.0"
