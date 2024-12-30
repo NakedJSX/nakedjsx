@@ -41,12 +41,15 @@ package_json_update_version() {
 }
 
 commit_updated_package() {
-	git add package.json
-	TAG="v$VERSION"
-	git commit -m "$TAG"
-	git tag "$TAG"
-	git push origin
-	git push origin "$TAG"
+	if [[ -n $(git status --porcelain) ]]
+	then
+		git add package.json
+		TAG="v$VERSION"
+		git commit -m "$TAG"
+		git tag "$TAG"
+		git push origin
+		git push origin "$TAG"
+	fi
 }
 
 rm -rf node_modules .yarn* .pnp.* yarn.lock package-lock.json
