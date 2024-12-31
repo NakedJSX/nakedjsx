@@ -87,6 +87,20 @@ for package in ${OTHER_PACKAGES[*]}
 do
 	pushd "$package" >/dev/null
 	npm publish --tag $NPM_TAG
+	# Wait for the new version to be available,
+	# otherwise publishing things that depend on it will fail.
+	WAIT_SECONDS=1
+	while ! npm show @nakedjsx/$(basename $(pwd))@$VERSION version
+	do
+		echo "Waiting for @nakedjsx/$(basename $(pwd))@$VERSION to be available..."
+		sleep $WAIT_SECONDS
+		WAIT_SECONDS=$((WAIT_SECONDS * 2))
+		if [ $WAIT_SECONDS -gt 60 ]
+		then
+			echo "Timeout waiting for @nakedjsx/$(basename $(pwd))@$VERSION to be available"
+			exit 1
+		fi
+	done
 	popd >/dev/null
 done
 
